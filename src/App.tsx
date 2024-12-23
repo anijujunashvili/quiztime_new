@@ -1,27 +1,14 @@
-import { useEffect, useState } from 'react';
-// import { Button } from './components/ui/button';
-// import { Card } from './components/ui/card';
+import { useState } from 'react';
 import { Toggle } from '@radix-ui/react-toggle';
 import { QUIZ } from '@/static';
-import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 
 function App() {
+  const questions = QUIZ.questions;
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [isQuizComplete, setIsQuizComplete] = useState(false);
-  const [progressValue, setProgressValue] = useState(25);
-
-  const questions = QUIZ.questions;
-
-  // const progressValue = (currentQuestionIndex + 1) * 25;
-
-  // useEffect(() => {
-
-  //
-  // }, [currentQuestionIndex, progressValue]);
-
-  console.log(progressValue);
+  const [progressValue, setProgressValue] = useState(100 / questions.length);
 
   const handleAnswerSelection = (isCorrect: boolean) => {
     if (isCorrect) {
@@ -62,16 +49,10 @@ function App() {
                 </div>
               </Toggle>
             ))}
-            {/* <div className='w-full'>
-              <Progress value={progressValue} className="w-7 h-7 bg-blue-800" />
-            </div> */}
             <div className="p-6 max-w-md mx-auto w-full">
-              {/* <h2 className="text-xl font-semibold mb-4">
-                ShadCN Progress Example
-              </h2> */}
               <Progress
                 value={progressValue}
-                className=" h-7 bg-[#EDE8E3] bg-white"
+                className=" h-7  bg-white"
                 max={100}
               />
               <p className="mt-2 text-sm text-gray-500">
